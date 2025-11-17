@@ -12,7 +12,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     ciphertext = ""
     # PUT YOUR CODE HERE
-    alphabet = 26 #26 - количество букв в английском алфавите
+    alphabet = 26 # 26 - количество букв в английском алфавите
     A_num = ord("A")
     a_num = ord("a")
     for char in plaintext:
