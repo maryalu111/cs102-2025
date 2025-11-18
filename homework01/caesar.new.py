@@ -1,6 +1,7 @@
 def decrypt_poly_shift(ciphertext: str, odd_shift: int, even_shift: int) -> str:
     plaintext = ""
     alphabet = 32  # Количество букв в русском алфавите (без Ё/ё)
+    text_to_decrypt = plaintext.replace("Ё", "Е").replace("ё", "е")
     upper_a_num = ord("А")
     lower_a_num = ord("а")
     for index, elem in enumerate(ciphertext):
