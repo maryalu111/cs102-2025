@@ -1,4 +1,3 @@
-
 def decrypt_poly_shift(ciphertext: str, odd_shift: int, even_shift: int) -> str:
     plaintext = ""
     alphabet = 32  # Количество букв в русском алфавите (без Ё/ё)
@@ -13,4 +12,3 @@ def decrypt_poly_shift(ciphertext: str, odd_shift: int, even_shift: int) -> str:
         else:
             plaintext += elem
     return plaintext
-
