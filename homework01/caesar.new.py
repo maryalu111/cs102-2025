@@ -11,4 +11,5 @@ def decrypt_poly_shift(ciphertext: str, odd_shift: int, even_shift: int) -> str:
             plaintext += chr(element_code)
         else:
             plaintext += elem
+            
     return plaintext
