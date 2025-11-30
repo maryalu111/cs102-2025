@@ -42,6 +42,12 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
     pass
+    if len(values) == n**2:
+        result = []
+        for i in range(n):
+            result.append([i for i in values[i * n : i * n + n]])
+        return result
+    return []
 
 
 def get_row(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
