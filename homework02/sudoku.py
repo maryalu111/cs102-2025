@@ -11,7 +11,7 @@ T = tp.TypeVar("T")
 def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
     """Прочитать Судоку из указанного файла"""
     path = pathlib.Path(path)
-    with path.open(encoding='utf-8') as f:
+    with path.open(encoding="utf-8") as f:
         puzzle = f.read()
     return create_grid(puzzle)
 
@@ -27,10 +27,7 @@ def display(grid: tp.List[tp.List[str]]) -> None:
     width = 2
     line = "+".join(["-" * (width * 3)] * 3)
     for row in range(9):
-        print("".join(
-            grid[row][col].center(width) + ("|" if str(col) in "25" else "")
-            for col in range(9)
-        ))
+        print("".join(grid[row][col].center(width) + ("|" if str(col) in "25" else "") for col in range(9)))
         if str(row) in "25":
             print(line)
     print()
@@ -44,10 +41,10 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    if len(values) == n ** 2:
+    if len(values) == n**2:
         result = []
         for i in range(n):
-            result.append(values[i * n: i * n + n])
+            result.append(values[i * n : i * n + n])
         return result
     return []
 
@@ -90,11 +87,7 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     pass
     start_row_pos = pos[0] - (pos[0] % 3)
     start_col_pos = pos[1] - (pos[1] % 3)
-    return [
-        grid[start_row_pos + i][start_col_pos + j]
-        for i in range(3)
-        for j in range(3)
-    ]
+    return [grid[start_row_pos + i][start_col_pos + j] for i in range(3) for j in range(3)]
 
 
 def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[int, int]]:
@@ -168,7 +161,7 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
 
 
 def check_solution(solution: tp.List[tp.List[str]]) -> bool:
-    """ Если решение solution верно, то вернуть True, в противном случае False"""
+    """Если решение solution верно, то вернуть True, в противном случае False"""
     # TODO: Add doctests with bad puzzles
     """Если решение solution верно, то вернуть True, в противном случае False
     >>> good_solution = [
