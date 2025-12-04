@@ -13,7 +13,6 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    pass
     if n < 2:
         return False
     if n == 2:
@@ -37,7 +36,6 @@ def gcd(a: int, b: int) -> int:
     1
     """
     # PUT YOUR CODE HERE
-    pass
     while b != 0:
         a, b = b, a % b
     return a
