@@ -17,10 +17,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     a_num = ord("a")
     for char in plaintext:
         if char.isalpha():
-            if char.isupper():
-                size = A_num
-            else:
-                size = a_num
+            size = A_num if char.isupper() else a_num
             position = (ord(char) - size + shift) % alphabet
             ciphertext += chr(size + position)
         else:

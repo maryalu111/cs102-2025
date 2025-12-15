@@ -13,12 +13,10 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    if n < 2:
+    if n < 2 or (n % 2 == 0 and n > 2):
         return False
     if n == 2:
         return True
-    if n % 2 == 0:
-        return False
     d = 3
     while d * d <= n:
         if n % d == 0:
