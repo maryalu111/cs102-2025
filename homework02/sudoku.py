@@ -41,8 +41,8 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    if len(values) == n ** 2:
-        return [values[i * n: i * n + n] for i in range(n)]
+    if len(values) == n**2:
+        return [values[i * n : i * n + n] for i in range(n)]
     return []
 
 
@@ -230,7 +230,7 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     solve(generated_sudoku)
     positions = [(x, y) for x in range(9) for y in range(9)]
     random.shuffle(positions)
-    for i in range(81 - N): # 81 - общее количество клеток в судоку
+    for i in range(81 - N):  # 81 - общее количество клеток в судоку
         x, y = positions[i]
         generated_sudoku[x][y] = "."
     return generated_sudoku
