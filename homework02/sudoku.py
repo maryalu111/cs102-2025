@@ -41,11 +41,8 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    if len(values) == n**2:
-        result = []
-        for i in range(n):
-            result.append(values[i * n : i * n + n])
-        return result
+    if len(values) == n ** 2:
+        return [values[i * n: i * n + n] for i in range(n)]
     return []
 
 
@@ -71,7 +68,8 @@ def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    return [grid[i][pos[1]] for i in range(len(grid))]
+    col = pos[1]
+    return [row[col] for row in grid]
 
 
 def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
@@ -99,9 +97,9 @@ def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[in
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if grid[i][j] == ".":
+    for i, row in enumerate(grid):
+        for j, cell in enumerate(row):
+            if cell == ".":
                 return (i, j)
     return None
 
@@ -116,12 +114,12 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    all_values = []
-    all_values.extend(get_row(grid, pos))
-    all_values.extend(get_col(grid, pos))
-    all_values.extend(get_block(grid, pos))
-    impossible_values = set(all_values)
-    return set(str(i) for i in range(1, 10)) - impossible_values
+    base = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+    impossible_values = set()
+    impossible_values.update(get_row(grid, pos))
+    impossible_values.update(get_col(grid, pos))
+    impossible_values.update(get_block(grid, pos))
+    return base - impossible_values
 
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
@@ -191,7 +189,7 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     >>> check_solution(bad_solution)
     False
     """
-    correct_values = set(str(i) for i in range(1, 10))
+    correct_values = {str(i) for i in range(1, 10)}
     for i in range(len(solution)):
         row = set(get_row(solution, (i, 0)))
         col = set(get_col(solution, (0, i)))
@@ -232,7 +230,7 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     solve(generated_sudoku)
     positions = [(x, y) for x in range(9) for y in range(9)]
     random.shuffle(positions)
-    for i in range(81 - N):
+    for i in range(81 - N): # 81 - общее количество клеток в судоку
         x, y = positions[i]
         generated_sudoku[x][y] = "."
     return generated_sudoku
