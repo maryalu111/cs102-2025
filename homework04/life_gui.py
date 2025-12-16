@@ -1,10 +1,10 @@
+import random
+from pathlib import Path
+
 import pygame
 from life import GameOfLife
 from pygame.locals import *
 from ui import UI
-import random
-from pathlib import Path
-
 
 class GUI(UI):
     def __init__(self, life: GameOfLife, cell_size: int = 10, speed: int = 10) -> None:
