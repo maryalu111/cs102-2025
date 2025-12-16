@@ -24,13 +24,9 @@ class GUI(UI):
     def draw_lines(self) -> None:
         """Отрисовка сетки"""
         for x in range(0, self.width, self.cell_size):
-            pygame.draw.line(
-                self.screen, pygame.Color("black"), (x, 0), (x, self.height)
-            )
+            pygame.draw.line(self.screen, pygame.Color("black"), (x, 0), (x, self.height))
         for y in range(0, self.height, self.cell_size):
-            pygame.draw.line(
-                self.screen, pygame.Color("black"), (0, y), (self.width, y)
-            )
+            pygame.draw.line(self.screen, pygame.Color("black"), (0, y), (self.width, y))
 
     def draw_grid(self, color="green") -> None:
         """Отрисовка клеток"""
@@ -78,9 +74,7 @@ class GUI(UI):
                         row = y // self.cell_size
                         col = x // self.cell_size
                         if 0 <= row < self.cell_height and 0 <= col < self.cell_width:
-                            self.life.curr_generation[row][col] = (
-                                1 - self.life.curr_generation[row][col]
-                            )
+                            self.life.curr_generation[row][col] = 1 - self.life.curr_generation[row][col]
 
             self.screen.fill(pygame.Color("white"))
             if self.random_color:
@@ -111,9 +105,7 @@ class GUI(UI):
 
             font = pygame.font.Font(None, 36)
             if self.paused:
-                pause_text = font.render(
-                    "PAUSED (SPACE to resume)", True, pygame.Color("red")
-                )
+                pause_text = font.render("PAUSED (SPACE to resume)", True, pygame.Color("red"))
                 self.screen.blit(pause_text, (10, 10))
 
             pygame.display.flip()

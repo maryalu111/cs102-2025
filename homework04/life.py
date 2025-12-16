@@ -85,10 +85,7 @@ class GameOfLife:
         Не превысило ли текущее число поколений максимально допустимое.
         """
         """Checks if max generations were exceeded"""
-        return (
-            self.max_generations is not None
-            and self.generations >= self.max_generations
-        )
+        return self.max_generations is not None and self.generations >= self.max_generations
 
     @property
     def is_changing(self) -> bool:
