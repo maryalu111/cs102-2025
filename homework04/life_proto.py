@@ -1,6 +1,7 @@
 """
 Prototype for Game of Life
 """
+
 import random
 import typing as tp
 from typing import List, Tuple
@@ -15,7 +16,9 @@ Grid = tp.List[Cells]
 
 
 class GameOfLife:
-    def __init__(self, width: int = 640, height: int = 480, cell_size: int = 10, speed: int = 10) -> None:
+    def __init__(
+        self, width: int = 640, height: int = 480, cell_size: int = 10, speed: int = 10
+    ) -> None:
         self.width = width
         self.height = height
         self.cell_size = cell_size
@@ -39,9 +42,13 @@ class GameOfLife:
     def draw_lines(self) -> None:
         """Draws lines"""
         for x in range(0, self.width, self.cell_size):
-            pygame.draw.line(self.screen, pygame.Color("black"), (x, 0), (x, self.height))
+            pygame.draw.line(
+                self.screen, pygame.Color("black"), (x, 0), (x, self.height)
+            )
         for y in range(0, self.height, self.cell_size):
-            pygame.draw.line(self.screen, pygame.Color("black"), (0, y), (self.width, y))
+            pygame.draw.line(
+                self.screen, pygame.Color("black"), (0, y), (self.width, y)
+            )
 
     def draw_grid(self) -> None:
         """Draw all cells with color based on their state."""
@@ -102,7 +109,11 @@ class GameOfLife:
         neighbours = []
         for x in range(i - 1, i + 2):
             for y in range(j - 1, j + 2):
-                if (x, y) != (i, j) and 0 <= x < self.cell_height and 0 <= y < self.cell_width:
+                if (
+                    (x, y) != (i, j)
+                    and 0 <= x < self.cell_height
+                    and 0 <= y < self.cell_width
+                ):
                     neighbours.append(self.curr_generation[x][y])
         return neighbours
 
@@ -133,7 +144,10 @@ class GameOfLife:
     @property
     def is_max_generations_exceeded(self) -> bool:
         """Checks if max generations were exceeded"""
-        return self.max_generations is not None and self.generations >= self.max_generations
+        return (
+            self.max_generations is not None
+            and self.generations >= self.max_generations
+        )
 
     @property
     def is_changing(self) -> bool:
