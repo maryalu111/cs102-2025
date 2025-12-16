@@ -2,8 +2,7 @@ import random
 from pathlib import Path
 
 import pygame
-from pygame.locals import (K_SPACE, KEYDOWN, MOUSEBUTTONDOWN, QUIT, K_l, K_r,
-                           K_s)
+from pygame.locals import K_SPACE, KEYDOWN, MOUSEBUTTONDOWN, QUIT, K_l, K_r, K_s
 
 from life import GameOfLife
 from ui import UI
