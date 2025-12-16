@@ -1,12 +1,14 @@
 """
 Prototype for Game of Life
 """
-
 import random
 import typing as tp
+from typing import List, Tuple
 
 import pygame
+from pygame.locals import *
 from pygame.locals import QUIT
+
 
 Cell = tp.Tuple[int, int]
 Cells = tp.List[int]
