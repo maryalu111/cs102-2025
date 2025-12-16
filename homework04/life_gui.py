@@ -4,7 +4,9 @@ from pathlib import Path
 import pygame
 from life import GameOfLife
 from pygame.locals import *
+from pygame.locals import K_SPACE, KEYDOWN, MOUSEBUTTONDOWN, QUIT, K_l, K_r, K_s
 from ui import UI
+
 
 class GUI(UI):
     def __init__(self, life: GameOfLife, cell_size: int = 10, speed: int = 10) -> None:
