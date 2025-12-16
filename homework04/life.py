@@ -5,10 +5,10 @@ Game of Life
 import pathlib
 import random
 import typing as tp
+from typing import List, Optional, Tuple
 
 import pygame
 from pygame.locals import *
-from typing import List, Optional, Tuple
 
 Cell = tp.Tuple[int, int]
 Cells = tp.List[int]
