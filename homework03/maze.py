@@ -1,4 +1,3 @@
-from copy import deepcopy
 from random import choice, randint
 from typing import List, Optional, Tuple, Union
 
@@ -17,7 +16,6 @@ def remove_wall(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) -> Li
     :return:
     """
 
-    pass
     x, y = coord
     index_last_col = len(grid[0]) - 1
     direction = choice(("up", "right"))
@@ -81,15 +79,15 @@ def get_exits(grid: List[List[Union[str, int]]]) -> List[Tuple[int, int]]:
     :return:
     """
 
-    pass
     exits = []
 
-    for x in range(len(grid)):
-        for y in range(len(grid[x])):
-            if grid[x][y] == "X":
+    for x, row in enumerate(grid):
+        for y, cell in enumerate(row):
+            if cell == "X":
                 exits.append((x, y))
                 if len(exits) == 2:
                     return exits
+
     return exits
 
 
@@ -101,7 +99,6 @@ def make_step(grid: List[List[Union[str, int]]], k: int) -> List[List[Union[str,
     :return:
     """
 
-    pass
     number_rows = len(grid)
     number_cols = len(grid[0])
 
@@ -127,7 +124,7 @@ def shortest_path(
     :param exit_coord:
     :return:
     """
-    pass
+
     number_rows = len(grid)
     number_cols = len(grid[0])
 
@@ -155,11 +152,10 @@ def encircled_exit(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) ->
     :return:
     """
 
-    pass
     number_rows = len(grid)
     number_cols = len(grid[0])
     x, y = coord
-    if (x == 0 or x == number_rows - 1) and (y == 0 or y == number_cols - 1):
+    if x in (0, number_rows - 1) and y in (0, number_cols - 1):
         return True
     if x == 0 and grid[x + 1][y] != " ":
         return True
@@ -181,7 +177,6 @@ def solve_maze(
     :return:
     """
 
-    pass
     exits = get_exits(grid)
 
     if len(exits) == 1:
@@ -190,10 +185,10 @@ def solve_maze(
     for poss_exit in exits:
         if encircled_exit(grid, poss_exit):
             return grid, None
-    for x in range(len(grid)):
-        for y in range(len(grid[0])):
-            if grid[x][y] == " ":
-                grid[x][y] = 0
+    for i, row in enumerate(grid):
+        for j, cell in enumerate(row):
+            if cell == " ":
+                grid[i][j] = 0
 
     start_x, start_y = exits[0]
     finish_x, finish_y = exits[1]
